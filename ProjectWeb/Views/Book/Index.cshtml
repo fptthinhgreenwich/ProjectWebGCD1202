@@ -1,0 +1,32 @@
+﻿@model List<Book>
+<partial name="_Notification" />
+<h3>This is Book Management Section</h3>
+<a asp-controller="Book" asp-action="Add" class="btn btn-primary">Add new Book</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Title</td>
+            <td>Description</td>
+            <td>Author</td>
+            <td>Price</td>
+            <td>Category</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Description</td>
+                <td>@book.Author</td>
+                <td>@book.Price.ToString("C")</td>
+                <td>@book.Category?.Name</td> <!-- Hiển thị tên Category -->
+                <td>
+                    <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id" class="btn btn-primary">Edit</a>
+                    <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
